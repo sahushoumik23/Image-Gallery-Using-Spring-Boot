@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h3>Upload Image</h3>
+        <form th:action="@{/images/add}" method="post" th:object="${imageGallery}" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-5">
+                    <p>Image</p>
+                    <div class="custom-file">
+                        <input type="file"  class="custom-file-input" name="image" accept="image/jpeg, image/png"  id="image" onchange="showPreview(event)"/>
+                        <label class="custom-file-label" for="image">Choose file</label>
+                    </div>
+                    <div class="form-group">
+                        <img src="#" id="imgPreview" height="100px" width="100px" th:src="@{${'/Images/' + imageGallery.imageName}}" style="margin-top: 20px" alt=" " >
+                        <!-- <img src="" alt="" id="imgPreview"> -->
+                    </div>
+                    <input type="hidden" name="imgName" th:value="${imageGallery.imageName}">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<!-- <script>
+//     var reader = new FileReader();
+// reader.onload = function(r_event) {
+// document.getElementById('imgPreview').setAttribute('src', r_event.target.result);
+// }
+
+// document.getElementsByName('image')[0].addEventListener('change', function(event) {
+//     reader.readAsDataURL(this.files[0]);
+// });
+
+
+//     }
+// }
+</script> -->
+</html>
